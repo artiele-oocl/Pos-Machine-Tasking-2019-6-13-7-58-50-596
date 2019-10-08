@@ -1,0 +1,23 @@
+{
+  "name": "-implement-a-multiplication-table-2019-6-13-6-57-40-397",
+  "version": "1.0.0",
+  "description": "Please read the following requirement:",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^24.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artiele-oocl/-Implement-A-Multiplication-Table-2019-6-13-6-57-40-397.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artiele-oocl/-Implement-A-Multiplication-Table-2019-6-13-6-57-40-397/issues"
+  },
+  "homepage": "https://github.com/artiele-oocl/-Implement-A-Multiplication-Table-2019-6-13-6-57-40-397#readme"
+}
