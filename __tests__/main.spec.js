@@ -1,6 +1,4 @@
 const printReceipt = require('../main');
-// node_modules\.bin\jest
-
 
 it('should display receipt', () => {
     const collectionBarcode = ['0001', '0003', '0005', '0003'];
@@ -62,7 +60,7 @@ it('should display error since barcode is not valid', () => {
             { "id": "0009", "name": "Diet Dr Pepper", "price": 11 },
             { "id": "0010", "name": "Fanta", "price": 12 }
         ]
-    const result = '[ERROR]: Barcodes are not valid:'
+    const result = '[ERROR]: Barcodes are not valid: '
     expect(printReceipt(collectionBarcode, db)).toBe(result);
 });
 

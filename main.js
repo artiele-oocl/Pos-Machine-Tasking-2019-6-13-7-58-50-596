@@ -1,8 +1,5 @@
 module.exports = (collectionBarcode, db) => {
-    if (validateCollectionBarcode(collectionBarcode, db).length > 0)
-    {
-        return validateCollectionBarcode(collectionBarcode, db);
-    }
+    if (validateCollectionBarcode(collectionBarcode, db) !== undefined) return validateCollectionBarcode(collectionBarcode, db);
     return printReceipt(collectionBarcode, db);
 };
 
@@ -12,11 +9,14 @@ function validateCollectionBarcode(collectionBarcode, db) {
     if (collectionBarcode.length < 1)
     {
         return "[ERROR]: Barcodes are required";
+    } else
+    {
+        collectionBarcode.forEach(code => {
+            if (!validCodes.includes(code)) invalidCodes.push(code);
+        });
+        if (invalidCodes.length > 0) return "[ERROR]: Barcodes are not valid: " + invalidCodes;
     }
-    collectionBarcode.forEach(code => {
-        if (!validCodes.includes(code)) invalidCodes.push(code);
-    })
-    return "[ERROR]: Barcodes are not valid: " + invalidCodes;
+    return;
 }
 function validBarcodesList(db) {
     let validBarcodesList = [];
