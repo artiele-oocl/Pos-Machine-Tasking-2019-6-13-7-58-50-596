@@ -1,6 +1,8 @@
 const printReceipt = require('../main');
+// node_modules\.bin\jest
 
-it ('should display multiple table', () => {
+
+it ('should display receipt', () => {
     const collectionBarcode = ['0001', '0003', '0005', '0003'];
     const db =
     [
@@ -15,5 +17,13 @@ it ('should display multiple table', () => {
         {"id": "0009", "name" : "Diet Dr Pepper", "price": 11},
         {"id": "0010", "name" : "Fanta", "price": 12}
     ]
+    const result =
+    "Receipts\n"+
+    "------------------------------------------------------------\n"+
+    "Coca Cola                       3          1\n"+
+    "Pepsi-Cola                      5          2\n"+
+    "Dr Pepper                       7          1\n"+
+    "------------------------------------------------------------\n"+
+    "Price: 20"
     expect(printReceipt(collectionBarcode)).toBe(result);
 });

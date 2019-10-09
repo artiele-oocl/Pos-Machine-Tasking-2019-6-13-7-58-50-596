@@ -14,31 +14,36 @@ module.exports = (num1, num2) => {
         {"id": "0010", "name" : "Fanta", "price": 12}
     ]
 
-    return printReceipt(getUniqueBarcodes(collectionBarcode),db);
+    return printReceipt(filteredItems(collectionBarcode,db));
 };
 
-function printReceipt(collectionBarcode,db) {
-    let arr = [];
-    collectionBarcode.forEach(e => {
-        if (arr.length === 0 || isInObject(arr,e.id) === false) {
-            arr.push({'Name':e.Name, 'Quantity': 1, 'Unit price': parseFloat(e.Price).toFixed(2), 'Subtotal': parseFloat(e.Price).toFixed(2)})
-        } else {
-            arr.forEach(ov => {
-                if (ov.Name===e.Name) {
-                    parseInt(ov.Quantity = ov.Quantity + 1);
-                    parseFloat(ov.Subtotal = parseFloat(ov['Quantity'] * ov['Unit price']).toFixed(2));
-                }
-            })
-        }
-    });
-    return arr;
+function filteredItems(collectionBarcode,db) {
+    const filtered = [];
+    collectionBarcode.forEach(code => {
+        db.forEach(info=> {
+            if (code === info.id) {
+                if (!isInObject(filtered,code)) {
+                    filtered.push({'id':code,'name':info.name, 'price':info.price, 'qty':1})
+                } else {
+                    filtered.forEach(filteredItem => {
+                        if (code === filteredItem.id) {
+                            parseInt(filteredItem.qty = filteredItem.qty + 1);
+                        }
+                    })
+                } 
+            }
+        })
+    })
+    return filtered;
 }
 function isInObject(object,val){
     return object.some(ov => ov.id === val)
 }
-function getUniqueBarcodes(collectionBarcode) {
-    uniqueArray = collectionBarcode.filter(function(item, pos) {
-        return collectionBarcode.indexOf(item) == pos;
-    })
-    return uniqueArray;
+function printReceipt(filteredItems) {
+    out="Receipts\n"+
+    "------------------------------------------------------------\n"+
+    constructReceiptDetails(obj)
+    "------------------------------------------------------------\n"+
+    `Price: ${getTotal}`
+    return out;
 }
